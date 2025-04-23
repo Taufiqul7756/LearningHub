@@ -1,6 +1,7 @@
 "use client";
 import Sidebar from "./components/Sidebar";
 import { useState } from "react";
+import Image from "next/image";
 
 export default function TALLayout({ children }: { children: React.ReactNode }) {
   const [isCollapsed, setIsCollapsed] = useState(false);
@@ -11,6 +12,13 @@ export default function TALLayout({ children }: { children: React.ReactNode }) {
       <nav className="fixed top-0 left-0 right-0 h-16 border-b bg-white z-50">
         <div className="flex items-center justify-between h-full px-4">
           <div className="flex items-center space-x-2">
+            <Image
+              src="/images/tal_logo.jpg"
+              alt="TAL Logo"
+              width={32}
+              height={32}
+              className="rounded"
+            />
             <span className="font-bold text-xl">TAL Learning</span>
           </div>
         </div>
@@ -21,7 +29,7 @@ export default function TALLayout({ children }: { children: React.ReactNode }) {
         <Sidebar isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
         <main
           className={`flex-1 transition-all duration-300 ${
-            isCollapsed ? "ml-16" : "ml-64"
+            isCollapsed ? "ml-24" : "ml-72"
           }`}
         >
           <div className="p-6">{children}</div>

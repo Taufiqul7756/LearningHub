@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import {
@@ -108,11 +109,14 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
           {/* Logo and Toggle */}
           <div className="flex items-center justify-between p-4 border-b">
             <div className="flex items-center space-x-2">
-              <span
-                className={`font-bold ${isCollapsed ? "text-sm" : "text-xl"}`}
-              >
-                TAL
-              </span>
+              <Image
+                src="/images/tal_logo.jpg"
+                alt="TAL Logo"
+                width={isCollapsed ? 24 : 32}
+                height={isCollapsed ? 24 : 32}
+                className="rounded"
+              />
+              {!isCollapsed && <span className="font-bold text-xl">TAL</span>}
             </div>
             <button
               onClick={() => setIsCollapsed(!isCollapsed)}
