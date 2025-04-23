@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useEffect } from "react";
 import {
   BookOpen,
   Code2,
@@ -13,7 +14,15 @@ import {
   Shield,
   AlertTriangle,
   Lightbulb,
+  ChevronLeft,
+  ChevronRight,
 } from "lucide-react";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 
 const sidebarItems = [
   {
@@ -68,39 +77,101 @@ const sidebarItems = [
   },
 ];
 
-export default function Sidebar() {
+interface SidebarProps {
+  isCollapsed: boolean;
+  setIsCollapsed: (value: boolean) => void;
+}
+
+export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
   const pathname = usePathname();
 
+  useEffect(() => {
+    const checkMobile = () => {
+      if (window.innerWidth < 768) {
+        setIsCollapsed(true);
+      }
+    };
+
+    checkMobile();
+    window.addEventListener("resize", checkMobile);
+    return () => window.removeEventListener("resize", checkMobile);
+  }, [setIsCollapsed]);
+
   return (
-    <div className="w-64 h-[calc(100vh-4rem)] fixed left-0 top-16 border-r bg-white overflow-y-auto">
-      <nav className="p-4">
-        <div className="mb-4 px-4">
-          <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
-            TAL Resources
-          </h2>
+    <TooltipProvider>
+      <div
+        className={`fixed left-0 top-16 h-[calc(100vh-4rem)] border-r bg-white overflow-y-auto transition-all duration-300 ${
+          isCollapsed ? "w-24" : "w-72"
+        }`}
+      >
+        <div className="flex flex-col h-full">
+          {/* Logo and Toggle */}
+          <div className="flex items-center justify-between p-4 border-b">
+            <div className="flex items-center space-x-2">
+              <span
+                className={`font-bold ${isCollapsed ? "text-sm" : "text-xl"}`}
+              >
+                TAL
+              </span>
+            </div>
+            <button
+              onClick={() => setIsCollapsed(!isCollapsed)}
+              className="p-1 rounded-md hover:bg-gray-100"
+            >
+              {isCollapsed ? (
+                <ChevronRight className="w-5 h-5" />
+              ) : (
+                <ChevronLeft className="w-5 h-5" />
+              )}
+            </button>
+          </div>
+
+          {/* Navigation Items */}
+          <nav className="p-4 flex-1">
+            {!isCollapsed && (
+              <div className="mb-4 px-4">
+                <h2 className="text-sm font-semibold text-gray-500 uppercase tracking-wider">
+                  TAL Resources
+                </h2>
+              </div>
+            )}
+            <ul className="space-y-1">
+              {sidebarItems.map((item) => {
+                const Icon = item.icon;
+                const isActive = pathname === item.href;
+                return (
+                  <li key={item.href}>
+                    <Tooltip>
+                      <TooltipTrigger asChild>
+                        <Link
+                          href={item.href}
+                          className={`flex items-center px-4 py-2 rounded-md transition-colors ${
+                            isActive
+                              ? "bg-blue-50 text-blue-600"
+                              : "text-gray-700 hover:bg-gray-50"
+                          }`}
+                        >
+                          <Icon className="w-5 h-5" />
+                          {!isCollapsed && (
+                            <span className="ml-3 text-sm font-medium">
+                              {item.title}
+                            </span>
+                          )}
+                        </Link>
+                      </TooltipTrigger>
+                      {isCollapsed && (
+                        <TooltipContent side="right">
+                          {item.title}
+                        </TooltipContent>
+                      )}
+                    </Tooltip>
+                  </li>
+                );
+              })}
+            </ul>
+          </nav>
         </div>
-        <ul className="space-y-1">
-          {sidebarItems.map((item) => {
-            const Icon = item.icon;
-            const isActive = pathname === item.href;
-            return (
-              <li key={item.href}>
-                <Link
-                  href={item.href}
-                  className={`flex items-center px-4 py-2 rounded-md transition-colors ${
-                    isActive
-                      ? "bg-blue-50 text-blue-600"
-                      : "text-gray-700 hover:bg-gray-50"
-                  }`}
-                >
-                  <Icon className="w-5 h-5 mr-3" />
-                  <span className="text-sm font-medium">{item.title}</span>
-                </Link>
-              </li>
-            );
-          })}
-        </ul>
-      </nav>
-    </div>
+      </div>
+    </TooltipProvider>
   );
 }
