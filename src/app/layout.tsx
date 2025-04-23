@@ -1,21 +1,18 @@
-import type { Metadata } from "next";
-import { Inter } from "next/font/google";
-import "./globals.css";
-import { ThemeProvider } from "@/components/theme-provider";
-import Navbar from "@/components/navbar";
+import type { Metadata } from 'next';
+import { Inter } from 'next/font/google';
+import './globals.css';
+import { ThemeProvider } from '@/components/theme-provider';
+import Navbar from '@/components/navbar';
+import { Toaster } from 'react-hot-toast';
 
-const inter = Inter({ subsets: ["latin"] });
+const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
-  title: "TAL Learning Hub",
-  description: "A learning platform for developers at Tech Analyica Ltd",
+  title: 'TAL Learning Hub',
+  description: 'A learning platform for developers at Tech Analyica Ltd',
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={inter.className}>
@@ -28,6 +25,7 @@ export default function RootLayout({
           <Navbar />
           {children}
         </ThemeProvider>
+        <Toaster position="top-right" />
       </body>
     </html>
   );

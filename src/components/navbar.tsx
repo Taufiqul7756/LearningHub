@@ -1,24 +1,17 @@
-"use client";
+'use client';
 
-import Link from "next/link";
+import Image from 'next/image';
+import Link from 'next/link';
 
 export default function Navbar() {
   return (
-    <nav className="sticky top-0 z-50 w-full border-b bg-white">
-      <div className="container flex h-16 items-center">
-        <div className="mr-4 flex">
-          <Link href="/" className="mr-6 flex items-center space-x-2">
-            <span className="font-bold text-xl">LH</span>
-          </Link>
-          <nav className="flex items-center space-x-6 text-sm font-medium">
-            <Link href="/" className="text-gray-600 hover:text-gray-900">
-              Home
-            </Link>
-            <Link href="/about" className="text-gray-600 hover:text-gray-900">
-              About
-            </Link>
-          </nav>
+    <nav className="fixed top-0 left-0 right-0 h-16 border-b bg-white z-50 ">
+      <div className="flex items-center justify-start gap-10 h-full px-4">
+        <div className="flex items-center space-x-2">
+          <Image src="/images/cs.png" alt="TAL Logo" width={32} height={32} className="rounded" />
+          <span className="font-bold text-xl">csAltitude</span>
         </div>
+        <Link href="/">Home</Link>
       </div>
     </nav>
   );
