@@ -3,6 +3,7 @@ import React from 'react';
 import GetAllData from './components/GetAllData';
 import { Toaster } from 'sonner';
 import InstallGuidance from './components/InstallGuidance';
+import GetSingleData from './components/GetSingleData';
 
 const CrudWrapper = () => {
   return (
@@ -13,6 +14,9 @@ const CrudWrapper = () => {
       </div>
       <div className="pt-18">
         <GetAllData />
+      </div>
+      <div className="pt-18">
+        <GetSingleData />
       </div>
 
       <Toaster position="bottom-right" />
