@@ -4,7 +4,7 @@ import { Toaster } from 'sonner';
 
 const CrudWrapper = () => {
   return (
-    <div className="p-8">
+    <div className="">
       <h1 className="text-4xl font-bold mb-8">TAL CRUD Operations Guide</h1>
       <GetAllData />
       <Toaster position="bottom-right" />
