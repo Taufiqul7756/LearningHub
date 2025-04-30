@@ -213,8 +213,6 @@ export interface UserApiResponse {
               <ul className="list-disc pl-5 mt-2 text-gray-700">
                 <li>User interface for data structure</li>
                 <li>API response type</li>
-                <li>HTTP headers type</li>
-                <li>HTTP method enum</li>
               </ul>
             </div>
           </div>
