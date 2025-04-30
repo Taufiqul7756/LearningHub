@@ -1,7 +1,12 @@
-export default function CRUDPage() {
+import React from 'react';
+import CrudWrapper from './CrudWrapper';
+
+const page = () => {
   return (
-    <div className="ml-64 p-8">
-      <h1 className="text-4xl font-bold mb-8">Hello CRUD</h1>
+    <div>
+      <CrudWrapper />
     </div>
   );
-}
+};
+
+export default page;
