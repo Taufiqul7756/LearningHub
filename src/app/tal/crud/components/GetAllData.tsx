@@ -14,7 +14,7 @@ const GetAllData = () => {
   return (
     <div className="">
       <h2 className="text-2xl font-semibold mb-4">
-        GET ALL DATA <span className="italic text-lg text-green-400">GET</span>
+        GET ALL DATA <span className="italic text-lg text-green-400 underline">GET</span>
       </h2>
 
       <div className="flex flex-col sm:flex-row gap-4">
@@ -478,7 +478,7 @@ enum HttpMethod {
         </div>
 
         {/* Right Column - Explanation */}
-        <div className="w-[300px] md:w-2/5 bg-gray-100 p-6 rounded-lg">
+        <div className="w-[280px] md:w-2/5 bg-gray-100 p-6 mt-20 rounded-lg">
           <h3 className="text-xl font-semibold mb-4">How This Code Works</h3>
           <div className="space-y-4">
             <div>
