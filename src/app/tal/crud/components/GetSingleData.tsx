@@ -65,7 +65,6 @@ const {
   data,
   loading,
   error,
-  error,
 } = useQuery({
   queryKey: ["getsingle"],
   queryFn: () => GetSingleData(id),
