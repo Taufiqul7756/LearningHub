@@ -4,7 +4,6 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
-import InstallGuidance from './InstallGuidance';
 
 const GetAllData = () => {
   const handleCopy = (code: string) => {
@@ -14,11 +13,7 @@ const GetAllData = () => {
 
   return (
     <div className="">
-      <div className="mb-4">
-        <InstallGuidance />
-      </div>
-
-      <h2 className="text-2xl font-semibold pt-20 mb-4">
+      <h2 className="text-2xl font-semibold  mb-4">
         GET ALL DATA <span className="italic text-lg text-green-400 underline">GET</span>
       </h2>
 
