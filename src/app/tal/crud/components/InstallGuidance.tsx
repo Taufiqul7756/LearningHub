@@ -16,8 +16,8 @@ const InstallGuidance = () => {
       <div className="prose prose-sm max-w-none">
         <h2 className="text-2xl font-semibold mb-4">Efficient API Handling for CRUD Operations</h2>
         <p className="text-gray-700">
-          In this documentation, you&aposll find comprehensive examples of efficient API handling
-          for CRUD (Create, Read, Update, Delete) operations using:
+          In this documentation, you will find comprehensive examples of efficient API handling for
+          CRUD (Create, Read, Update, Delete) operations using:
         </p>
         <ul className="list-disc pl-5 mt-2 text-gray-700">
           <li>
