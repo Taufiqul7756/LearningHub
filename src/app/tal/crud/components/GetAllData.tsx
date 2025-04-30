@@ -4,6 +4,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Button } from '@/components/ui/button';
 import { Copy } from 'lucide-react';
 import { toast } from 'sonner';
+import InstallGuidance from './InstallGuidance';
 
 const GetAllData = () => {
   const handleCopy = (code: string) => {
@@ -13,7 +14,11 @@ const GetAllData = () => {
 
   return (
     <div className="">
-      <h2 className="text-2xl font-semibold mb-4">
+      <div className="mb-4">
+        <InstallGuidance />
+      </div>
+
+      <h2 className="text-2xl font-semibold pt-20 mb-4">
         GET ALL DATA <span className="italic text-lg text-green-400 underline">GET</span>
       </h2>
 
@@ -21,13 +26,11 @@ const GetAllData = () => {
         {/* Left Column - Code */}
         <div className="w-[300px] md:w-3/5">
           <Tabs defaultValue="code" className="w-full">
-            <TabsList className="grid grid-cols-3 bg-gray-800">
+            <TabsList className="grid grid-cols-2 bg-gray-800">
               <TabsTrigger value="code" className="cursor-pointer">
                 Code
               </TabsTrigger>
-              <TabsTrigger className="cursor-pointer" value="handler">
-                Handler
-              </TabsTrigger>
+
               <TabsTrigger className="cursor-pointer" value="type">
                 Type
               </TabsTrigger>
@@ -71,7 +74,7 @@ const {
                     <Copy className="h-4 w-4" />
                   </Button>
                 </div>
-                <pre className="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
+                <pre className="bg-gray-800 h-[500px] text-white p-4 rounded-lg overflow-x-auto">
                   {`import { get } from "@/lib/api/handlers";
 import { useSession } from "next-auth/react";
 
@@ -100,252 +103,7 @@ const {
                 </pre>
               </div>
             </TabsContent>
-            {/* //handler  */}
-            <TabsContent value="handler">
-              <div className="rounded-lg">
-                <div className="flex justify-end items-center">
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="cursor-pointer"
-                    onClick={() =>
-                      handleCopy(`import axios, {
-  AxiosError,
-  AxiosResponse,
-  AxiosRequestConfig,
-  InternalAxiosRequestConfig,
-} from "axios";
-import config from "@/types/Config";
-import { HttpHeaders, HttpMethod } from "@/types/Types";
 
-const instance = axios.create({
-  baseURL: config.apiUrl,
-});
-
-// Request interceptor
-instance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    return config;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  }
-);
-
-// Response interceptor
-instance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  }
-);
-
-const call = async <T>(
-  method: HttpMethod,
-  uri: string | (() => string),
-  headers: HttpHeaders,
-  body: object | undefined = undefined,
-  shouldRefresh: boolean = true,
-  baseUrl: string = config.apiUrl
-): Promise<T> => {
-  const url = typeof uri === "string" ? config.makeApiUrl(uri, baseUrl) : uri();
-
-  const options: AxiosRequestConfig = {
-    method,
-    url,
-    headers,
-    data: body,
-  };
-
-  try {
-    const response: AxiosResponse<T> = await instance(options);
-
-    return response.data as T;
-  } catch (error) {
-    const axiosError = error as AxiosError;
-    throw axiosError;
-  }
-};
-
-// updated all the helper functions to support multiple url
-
-export function get<T>(
-  uri: string,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.get, uri, headers, undefined, true, baseUrl);
-}
-
-export function post<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.post, uri, headers, body, true, baseUrl);
-}
-
-export function put<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.put, uri, headers, body, true, baseUrl);
-}
-
-export function patch<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.patch, uri, headers, body, true, baseUrl);
-}
-
-export function del<T>(
-  uri: string,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.del, uri, headers, undefined, true, baseUrl);
-}
-
-export function delMany<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl,
-): Promise<T> {
-  return call(HttpMethod.del, uri, headers, body, true, baseUrl);
-}
-`)
-                    }
-                  >
-                    <Copy className="h-4 w-4" />
-                  </Button>
-                </div>
-                <pre className="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
-                  {`import axios, {
-  AxiosError,
-  AxiosResponse,
-  AxiosRequestConfig,
-  InternalAxiosRequestConfig,
-} from "axios";
-import config from "@/types/Config";
-import { HttpHeaders, HttpMethod } from "@/types/Types";
-
-const instance = axios.create({
-  baseURL: config.apiUrl,
-});
-
-// Request interceptor
-instance.interceptors.request.use(
-  (config: InternalAxiosRequestConfig) => {
-    return config;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  }
-);
-
-// Response interceptor
-instance.interceptors.response.use(
-  (response: AxiosResponse) => {
-    return response;
-  },
-  (error: AxiosError) => {
-    return Promise.reject(error);
-  }
-);
-
-const call = async <T>(
-  method: HttpMethod,
-  uri: string | (() => string),
-  headers: HttpHeaders,
-  body: object | undefined = undefined,
-  shouldRefresh: boolean = true,
-  baseUrl: string = config.apiUrl
-): Promise<T> => {
-  const url = typeof uri === "string" ? config.makeApiUrl(uri, baseUrl) : uri();
-
-  const options: AxiosRequestConfig = {
-    method,
-    url,
-    headers,
-    data: body,
-  };
-
-  try {
-    const response: AxiosResponse<T> = await instance(options);
-
-    return response.data as T;
-  } catch (error) {
-    const axiosError = error as AxiosError;
-    throw axiosError;
-  }
-};
-
-// updated all the helper functions to support multiple url
-
-export function get<T>(
-  uri: string,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.get, uri, headers, undefined, true, baseUrl);
-}
-
-export function post<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.post, uri, headers, body, true, baseUrl);
-}
-
-export function put<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.put, uri, headers, body, true, baseUrl);
-}
-
-export function patch<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.patch, uri, headers, body, true, baseUrl);
-}
-
-export function del<T>(
-  uri: string,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl
-): Promise<T> {
-  return call(HttpMethod.del, uri, headers, undefined, true, baseUrl);
-}
-
-export function delMany<T>(
-  uri: string,
-  body: object,
-  headers: HttpHeaders = {},
-  baseUrl: string = config.apiUrl,
-): Promise<T> {
-  return call(HttpMethod.del, uri, headers, body, true, baseUrl);
-}
-`}
-                </pre>
-              </div>
-            </TabsContent>
             {/* //type  */}
             <TabsContent value="type">
               <div className="rounded-lg">
@@ -387,35 +145,13 @@ export interface UserApiResponse {
   };
   error?: string | null;
 }
-
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-interface UserApiResponse {
-  data: User[];
-  message: string;
-}
-
-type HttpHeaders = {
-  [key: string]: string;
-};
-
-enum HttpMethod {
-  get = "GET",
-  post = "POST",
-  put = "PUT",
-  patch = "PATCH",
-  del = "DELETE",
-}`)
+`)
                     }
                   >
                     <Copy className="h-4 w-4" />
                   </Button>
                 </div>
-                <pre className="bg-gray-800 text-white p-4 rounded-lg overflow-x-auto">
+                <pre className="bg-gray-800 h-[500px] text-white p-4 rounded-lg overflow-x-auto">
                   {`export interface Address {
   id: string;
   type: string;
@@ -449,28 +185,7 @@ export interface UserApiResponse {
   error?: string | null;
 }
 
-interface User {
-  id: string;
-  name: string;
-  email: string;
-}
-
-interface UserApiResponse {
-  data: User[];
-  message: string;
-}
-
-type HttpHeaders = {
-  [key: string]: string;
-};
-
-enum HttpMethod {
-  get = "GET",
-  post = "POST",
-  put = "PUT",
-  patch = "PATCH",
-  del = "DELETE",
-}`}
+`}
                 </pre>
               </div>
             </TabsContent>
@@ -496,18 +211,7 @@ enum HttpMethod {
             </div>
 
             <div>
-              <h4 className="font-medium mb-2">2. Handler Tab</h4>
-              <p className="text-gray-700">This shows our custom API handler implementation:</p>
-              <ul className="list-disc pl-5 mt-2 text-gray-700">
-                <li>Uses Axios for HTTP requests</li>
-                <li>Includes request and response interceptors</li>
-                <li>Handles error cases</li>
-                <li>Provides type safety with TypeScript</li>
-              </ul>
-            </div>
-
-            <div>
-              <h4 className="font-medium mb-2">3. Type Tab</h4>
+              <h4 className="font-medium mb-2">2. Type Tab</h4>
               <p className="text-gray-700">
                 This shows the TypeScript types used in the implementation:
               </p>
