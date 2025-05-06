@@ -1,9 +1,9 @@
-"use client";
+'use client';
 
-import Link from "next/link";
-import Image from "next/image";
-import { usePathname } from "next/navigation";
-import { useEffect } from "react";
+import Link from 'next/link';
+import Image from 'next/image';
+import { usePathname } from 'next/navigation';
+import { useEffect } from 'react';
 import {
   BookOpen,
   Code2,
@@ -17,63 +17,64 @@ import {
   Lightbulb,
   ChevronLeft,
   ChevronRight,
-} from "lucide-react";
-import {
-  Tooltip,
-  TooltipContent,
-  TooltipProvider,
-  TooltipTrigger,
-} from "@/components/ui/tooltip";
+} from 'lucide-react';
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from '@/components/ui/tooltip';
+import { RiOrganizationChart } from 'react-icons/ri';
 
 const sidebarItems = [
   {
-    title: "Best Practices",
-    href: "/tal/best-practices",
+    title: 'Best Practices',
+    href: '/tal/best-practices',
     icon: Lightbulb,
   },
   {
-    title: "Learning Resources",
-    href: "/tal/learning-resources",
+    title: 'Learning Resources',
+    href: '/tal/learning-resources',
     icon: BookOpen,
   },
   {
-    title: "Fetch",
-    href: "/tal/fetch",
+    title: 'Fetch',
+    href: '/tal/fetch',
     icon: Code2,
   },
   {
-    title: "CRUD",
-    href: "/tal/crud",
+    title: 'Organization Chart',
+    href: '/tal/OrganizationChart',
+    icon: RiOrganizationChart,
+  },
+  {
+    title: 'CRUD',
+    href: '/tal/crud',
     icon: Database,
   },
   {
-    title: "Table",
-    href: "/tal/table",
+    title: 'Table',
+    href: '/tal/table',
     icon: Table2,
   },
   {
-    title: "Combo Compo",
-    href: "/tal/combo-compo",
+    title: 'Combo Compo',
+    href: '/tal/combo-compo',
     icon: Boxes,
   },
   {
-    title: "State Management",
-    href: "/tal/state-management",
+    title: 'State Management',
+    href: '/tal/state-management',
     icon: Brain,
   },
   {
-    title: "Form Handling",
-    href: "/tal/form-handling",
+    title: 'Form Handling',
+    href: '/tal/form-handling',
     icon: FormInput,
   },
   {
-    title: "Authentication",
-    href: "/tal/authentication",
+    title: 'Authentication',
+    href: '/tal/authentication',
     icon: Shield,
   },
   {
-    title: "Error Handling",
-    href: "/tal/error-handling",
+    title: 'Error Handling',
+    href: '/tal/error-handling',
     icon: AlertTriangle,
   },
 ];
@@ -94,15 +95,15 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
     };
 
     checkMobile();
-    window.addEventListener("resize", checkMobile);
-    return () => window.removeEventListener("resize", checkMobile);
+    window.addEventListener('resize', checkMobile);
+    return () => window.removeEventListener('resize', checkMobile);
   }, [setIsCollapsed]);
 
   return (
     <TooltipProvider>
       <div
         className={`fixed left-0 top-16 h-[calc(100vh-4rem)] border-r bg-white overflow-y-auto transition-all duration-300 ${
-          isCollapsed ? "w-24" : "w-72"
+          isCollapsed ? 'w-24' : 'w-72'
         }`}
       >
         <div className="flex flex-col h-full">
@@ -140,7 +141,7 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
               </div>
             )}
             <ul className="space-y-1">
-              {sidebarItems.map((item) => {
+              {sidebarItems.map(item => {
                 const Icon = item.icon;
                 const isActive = pathname === item.href;
                 return (
@@ -150,24 +151,16 @@ export default function Sidebar({ isCollapsed, setIsCollapsed }: SidebarProps) {
                         <Link
                           href={item.href}
                           className={`flex items-center px-4 py-2 rounded-md transition-colors ${
-                            isActive
-                              ? "bg-blue-50 text-blue-600"
-                              : "text-gray-700 hover:bg-gray-50"
+                            isActive ? 'bg-blue-50 text-blue-600' : 'text-gray-700 hover:bg-gray-50'
                           }`}
                         >
                           <Icon className="w-5 h-5" />
                           {!isCollapsed && (
-                            <span className="ml-3 text-sm font-medium">
-                              {item.title}
-                            </span>
+                            <span className="ml-3 text-sm font-medium">{item.title}</span>
                           )}
                         </Link>
                       </TooltipTrigger>
-                      {isCollapsed && (
-                        <TooltipContent side="right">
-                          {item.title}
-                        </TooltipContent>
-                      )}
+                      {isCollapsed && <TooltipContent side="right">{item.title}</TooltipContent>}
                     </Tooltip>
                   </li>
                 );
