@@ -4,6 +4,7 @@ import GetAllData from './components/GetAllData';
 import { Toaster } from 'sonner';
 import InstallGuidance from './components/InstallGuidance';
 import GetSingleData from './components/GetSingleData';
+// import CreateUserForm from './components/CreateUserForm';
 
 const CrudWrapper = () => {
   return (
@@ -18,6 +19,9 @@ const CrudWrapper = () => {
       <div className="pt-18">
         <GetSingleData />
       </div>
+      {/* <div className="pt-18">
+        <CreateUserForm />
+      </div> */}
 
       <Toaster position="bottom-right" />
     </div>
