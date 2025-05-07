@@ -98,7 +98,7 @@ const InstallGuidance = () => {
               </TabsTrigger>
             </TabsList>
 
-            {/* //handler  */}
+            {/* //code  */}
             <TabsContent value="code">
               <div className="rounded-lg">
                 <div className="flex justify-end items-center">
@@ -133,36 +133,38 @@ export interface NodeProps {
   parent?: Organization;
 }
 
-const Organization: React.FC<OrganizationProps> = ({ org, onCollapse, collapsed }) => {
+const OrganizationComponent: React.FC<OrganizationProps> = ({ org, onCollapse, collapsed }) => {
   return (
-    <div className="grid items-center justify-center gap-2 rounded-lg bg-white p-4 shadow">
-      <div className="grid items-center justify-center gap-2">
-        <div className="ml-12">
-          <img src={org.image} alt={org.name} className="mr-4 h-12 w-12 rounded-full" />
+    <div className="inline-block h-36 w-36 flex-col justify-between rounded-lg bg-white p-4 shadow-md">
+      <div className="grid items-center space-x-4">
+        <div className="flex items-center justify-center">
+          <img src={org.image} alt={org.name} className="h-12 w-12 rounded-full" />
         </div>
         <div>
-          <h2 className="text-lg font-semibold">{org.name}</h2>
-          <p className="text-sm text-gray-600">{org.designation}</p>
+          <h2 className="text-sm font-semibold">{org.name}</h2>
+          <p className="text-[10px] text-gray-600">{org.designation}</p>
         </div>
       </div>
-      <div>
-        <button className="ml-auto text-gray-500 hover:text-gray-700" onClick={onCollapse}>
-          <svg
-            className={\`h-6 w-6 transform \${collapsed ? 'rotate-0' : 'rotate-180'}\`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
-        </button>
-      </div>
+      {org.Child && org.Child.length > 0 && (
+        <div className="mt-0">
+          <button className="text-gray-500 hover:text-gray-700" onClick={onCollapse}>
+            <svg
+              className={\`h-6 w-6 transform \${collapsed ? 'rotate-0' : 'rotate-180'}\`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -187,9 +189,11 @@ const Node: React.FC<NodeProps> = ({ o, parent }) => {
       );
 
   return collapsed ? (
-    <T label={<Organization org={o} onCollapse={handleCollapse} collapsed={collapsed} />} />
+    <T
+      label={<OrganizationComponent org={o} onCollapse={handleCollapse} collapsed={collapsed} />}
+    />
   ) : (
-    <T label={<Organization org={o} onCollapse={handleCollapse} collapsed={collapsed} />}>
+    <T label={<OrganizationComponent org={o} onCollapse={handleCollapse} collapsed={collapsed} />}>
       {_.map(o.Child, (c: any) => (
         <Node o={c} parent={o} key={c.name} />
       ))}
@@ -199,13 +203,17 @@ const Node: React.FC<NodeProps> = ({ o, parent }) => {
 
 const OrganigramChart: React.FC = () => {
   return (
-    <div className="bg-gray-100 p-4">
-      <Node o={organization} />
+    <div className="overflow-x-auto bg-gray-100 p-4" style={{ maxWidth: '100vw' }}>
+      <div style={{ width: '100%', overflowX: 'auto' }}>
+        <Node o={organization} />
+      </div>
     </div>
   );
 };
 
 export default OrganigramChart;
+
+
                       `)
                     }
                   >
@@ -239,36 +247,38 @@ export interface NodeProps {
   parent?: Organization;
 }
 
-const Organization: React.FC<OrganizationProps> = ({ org, onCollapse, collapsed }) => {
+const OrganizationComponent: React.FC<OrganizationProps> = ({ org, onCollapse, collapsed }) => {
   return (
-    <div className="grid items-center justify-center gap-2 rounded-lg bg-white p-4 shadow">
-      <div className="grid items-center justify-center gap-2">
-        <div className="ml-12">
-          <img src={org.image} alt={org.name} className="mr-4 h-12 w-12 rounded-full" />
+    <div className="inline-block h-36 w-36 flex-col justify-between rounded-lg bg-white p-4 shadow-md">
+      <div className="grid items-center space-x-4">
+        <div className="flex items-center justify-center">
+          <img src={org.image} alt={org.name} className="h-12 w-12 rounded-full" />
         </div>
         <div>
-          <h2 className="text-lg font-semibold">{org.name}</h2>
-          <p className="text-sm text-gray-600">{org.designation}</p>
+          <h2 className="text-sm font-semibold">{org.name}</h2>
+          <p className="text-[10px] text-gray-600">{org.designation}</p>
         </div>
       </div>
-      <div>
-        <button className="ml-auto text-gray-500 hover:text-gray-700" onClick={onCollapse}>
-          <svg
-            className={\`h-6 w-6 transform \${collapsed ? 'rotate-0' : 'rotate-180'}\`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="2"
-              d="M19 9l-7 7-7-7"
-            ></path>
-          </svg>
-        </button>
-      </div>
+      {org.Child && org.Child.length > 0 && (
+        <div className="mt-0">
+          <button className="text-gray-500 hover:text-gray-700" onClick={onCollapse}>
+            <svg
+              className={\`h-6 w-6 transform \${collapsed ? 'rotate-0' : 'rotate-180'}\`}
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="2"
+                d="M19 9l-7 7-7-7"
+              ></path>
+            </svg>
+          </button>
+        </div>
+      )}
     </div>
   );
 };
@@ -293,9 +303,11 @@ const Node: React.FC<NodeProps> = ({ o, parent }) => {
       );
 
   return collapsed ? (
-    <T label={<Organization org={o} onCollapse={handleCollapse} collapsed={collapsed} />} />
+    <T
+      label={<OrganizationComponent org={o} onCollapse={handleCollapse} collapsed={collapsed} />}
+    />
   ) : (
-    <T label={<Organization org={o} onCollapse={handleCollapse} collapsed={collapsed} />}>
+    <T label={<OrganizationComponent org={o} onCollapse={handleCollapse} collapsed={collapsed} />}>
       {_.map(o.Child, (c: any) => (
         <Node o={c} parent={o} key={c.name} />
       ))}
@@ -305,8 +317,10 @@ const Node: React.FC<NodeProps> = ({ o, parent }) => {
 
 const OrganigramChart: React.FC = () => {
   return (
-    <div className="bg-gray-100 p-4">
-      <Node o={organization} />
+    <div className="overflow-x-auto bg-gray-100 p-4" style={{ maxWidth: '100vw' }}>
+      <div style={{ width: '100%', overflowX: 'auto' }}>
+        <Node o={organization} />
+      </div>
     </div>
   );
 };
@@ -327,65 +341,87 @@ export default OrganigramChart;
                     onClick={() =>
                       handleCopy(`
 {
-  "name": "Taufiqul Islam 1st",
+  "name": "Full Name",
   "image": "https://randomuser.me/api/portraits/men/83.jpg",
   "designation": "President",
   "Child": [
     {
-      "name": "Taufiqul Islam 2nd",
+      "name": "Full Name",
       "image": "https://randomuser.me/api/portraits/men/66.jpg",
       "designation": "Senior Vice President",
       "Child": [
         {
-          "name": "Taufiqul 3rd 1st",
-          "image": "https://randomuser.me/api/portraits/men/67.jpg",
-          "designation": "Vice President",
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/26.jpg",
+          "designation": "General Secretary",
           "Child": [
             {
-              "name": "Taufiqul 4th 1",
-              "image": "https://randomuser.me/api/portraits/men/96.jpg",
-              "designation": "President"
-            },
-            {
-              "name": "Taufiqul 4th 2",
+              "name": "Full Name",
               "image": "https://randomuser.me/api/portraits/men/25.jpg",
-              "designation": "President"
-            }
-          ]
-        },
-        {
-          "name": "Taufiqul Islam 3rd 2nd",
-          "image": "https://randomuser.me/api/portraits/men/26.jpg",
-          "designation": "General Secretary"
-        },
-        {
-          "name": "Taufiqul Islam 3rd 3rd",
-          "image": "https://randomuser.me/api/portraits/men/26.jpg",
-          "designation": "President",
-          "Child": [
-            {
-              "name": "Taufiqul 4th 3",
-              "image": "https://randomuser.me/api/portraits/men/16.jpg",
-              "designation": "President"
-            },
-            {
-              "name": "Taufiqul 4th 4",
-              "image": "https://randomuser.me/api/portraits/men/15.jpg",
-              "designation": "President",
+              "designation": "Assistant General Secretary",
               "Child": [
                 {
-                  "name": "Taufiqul 4th 3",
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/15.jpg",
+                  "designation": "Assistant Org. Secretary"
+                },
+                {
+                  "name": "Full Name",
                   "image": "https://randomuser.me/api/portraits/men/18.jpg",
-                  "designation": "President"
+                  "designation": "Cultural Affairs Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/17.jpg",
+                  "designation": "Publicity Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/19.jpg",
+                  "designation": "Office Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/20.jpg",
+                  "designation": "Treasurer"
+                },
+                {
+                  "name": "Full Name ",
+                  "image": "https://randomuser.me/api/portraits/men/21.jpg",
+                  "designation": "Sports Secretary"
                 }
               ]
             }
           ]
         }
       ]
+    },
+    {
+      "name": "Full Name",
+      "image": "https://randomuser.me/api/portraits/men/67.jpg",
+      "designation": "Vice President",
+      "Child": [
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/25.jpg",
+          "designation": "Executive Members"
+        },
+
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/20.jpg",
+          "designation": "Executive Members"
+        },
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/21.jpg",
+          "designation": "Executive Members"
+        }
+      ]
     }
   ]
 }
+
                       `)
                     }
                   >
@@ -394,65 +430,87 @@ export default OrganigramChart;
                 </div>
                 <pre className="bg-gray-800 h-[600px] text-white p-4 rounded-lg overflow-x-auto">
                   {`{
-  "name": "Taufiqul Islam 1st",
+  "name": "Full Name",
   "image": "https://randomuser.me/api/portraits/men/83.jpg",
   "designation": "President",
   "Child": [
     {
-      "name": "Taufiqul Islam 2nd",
+      "name": "Full Name",
       "image": "https://randomuser.me/api/portraits/men/66.jpg",
       "designation": "Senior Vice President",
       "Child": [
         {
-          "name": "Taufiqul 3rd 1st",
-          "image": "https://randomuser.me/api/portraits/men/67.jpg",
-          "designation": "Vice President",
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/26.jpg",
+          "designation": "General Secretary",
           "Child": [
             {
-              "name": "Taufiqul 4th 1",
-              "image": "https://randomuser.me/api/portraits/men/96.jpg",
-              "designation": "President"
-            },
-            {
-              "name": "Taufiqul 4th 2",
+              "name": "Full Name",
               "image": "https://randomuser.me/api/portraits/men/25.jpg",
-              "designation": "President"
-            }
-          ]
-        },
-        {
-          "name": "Taufiqul Islam 3rd 2nd",
-          "image": "https://randomuser.me/api/portraits/men/26.jpg",
-          "designation": "General Secretary"
-        },
-        {
-          "name": "Taufiqul Islam 3rd 3rd",
-          "image": "https://randomuser.me/api/portraits/men/26.jpg",
-          "designation": "President",
-          "Child": [
-            {
-              "name": "Taufiqul 4th 3",
-              "image": "https://randomuser.me/api/portraits/men/16.jpg",
-              "designation": "President"
-            },
-            {
-              "name": "Taufiqul 4th 4",
-              "image": "https://randomuser.me/api/portraits/men/15.jpg",
-              "designation": "President",
+              "designation": "Assistant General Secretary",
               "Child": [
                 {
-                  "name": "Taufiqul 4th 3",
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/15.jpg",
+                  "designation": "Assistant Org. Secretary"
+                },
+                {
+                  "name": "Full Name",
                   "image": "https://randomuser.me/api/portraits/men/18.jpg",
-                  "designation": "President"
+                  "designation": "Cultural Affairs Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/17.jpg",
+                  "designation": "Publicity Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/19.jpg",
+                  "designation": "Office Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/20.jpg",
+                  "designation": "Treasurer"
+                },
+                {
+                  "name": "Full Name ",
+                  "image": "https://randomuser.me/api/portraits/men/21.jpg",
+                  "designation": "Sports Secretary"
                 }
               ]
             }
           ]
         }
       ]
+    },
+    {
+      "name": "Full Name",
+      "image": "https://randomuser.me/api/portraits/men/67.jpg",
+      "designation": "Vice President",
+      "Child": [
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/25.jpg",
+          "designation": "Executive Members"
+        },
+
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/20.jpg",
+          "designation": "Executive Members"
+        },
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/21.jpg",
+          "designation": "Executive Members"
+        }
+      ]
     }
   ]
 }
+
 `}
                 </pre>
               </div>
