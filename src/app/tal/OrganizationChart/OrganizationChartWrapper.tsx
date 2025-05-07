@@ -1,7 +1,10 @@
 import React from 'react';
-import OrganigramChart from './components/OrganigramChart';
+// import OrganigramChart from './components/OrganigramChart';
 import InstallGuidance from './components/InstallGuidance';
 import { Toaster } from 'sonner';
+import dynamic from 'next/dynamic';
+
+const OrganigramChart = dynamic(() => import('./components/OrganigramChart'), { ssr: false });
 
 const OrganizationChartWrapper = () => {
   return (
