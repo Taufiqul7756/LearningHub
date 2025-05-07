@@ -1,0 +1,81 @@
+{
+  "name": "Full Name",
+  "image": "https://randomuser.me/api/portraits/men/83.jpg",
+  "designation": "President",
+  "Child": [
+    {
+      "name": "Full Name",
+      "image": "https://randomuser.me/api/portraits/men/66.jpg",
+      "designation": "Senior Vice President",
+      "Child": [
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/26.jpg",
+          "designation": "General Secretary",
+          "Child": [
+            {
+              "name": "Full Name",
+              "image": "https://randomuser.me/api/portraits/men/25.jpg",
+              "designation": "Assistant General Secretary",
+              "Child": [
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/15.jpg",
+                  "designation": "Assistant Org. Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/18.jpg",
+                  "designation": "Cultural Affairs Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/17.jpg",
+                  "designation": "Publicity Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/19.jpg",
+                  "designation": "Office Secretary"
+                },
+                {
+                  "name": "Full Name",
+                  "image": "https://randomuser.me/api/portraits/men/20.jpg",
+                  "designation": "Treasurer"
+                },
+                {
+                  "name": "Full Name ",
+                  "image": "https://randomuser.me/api/portraits/men/21.jpg",
+                  "designation": "Sports Secretary"
+                }
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Full Name",
+      "image": "https://randomuser.me/api/portraits/men/67.jpg",
+      "designation": "Vice President",
+      "Child": [
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/25.jpg",
+          "designation": "Executive Members"
+        },
+
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/20.jpg",
+          "designation": "Executive Members"
+        },
+        {
+          "name": "Full Name",
+          "image": "https://randomuser.me/api/portraits/men/21.jpg",
+          "designation": "Executive Members"
+        }
+      ]
+    }
+  ]
+}

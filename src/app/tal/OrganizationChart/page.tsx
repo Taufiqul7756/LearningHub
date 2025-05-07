@@ -1,10 +1,10 @@
 import React from 'react';
-import CrudWrapper from './CrudWrapper';
+import OrganizationChartWrapper from './OrganizationChartWrapper';
 
 const page = () => {
   return (
     <div>
-      <CrudWrapper />
+      <OrganizationChartWrapper />
     </div>
   );
 };
