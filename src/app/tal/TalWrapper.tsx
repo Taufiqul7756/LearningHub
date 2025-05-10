@@ -1,10 +1,4 @@
-import {
-  Card,
-  CardHeader,
-  CardTitle,
-  CardDescription,
-  CardContent,
-} from "@/components/ui/card";
+import { Card, CardHeader, CardTitle, CardDescription, CardContent } from '@/components/ui/card';
 
 export default function TalWrapper() {
   return (
@@ -12,9 +6,7 @@ export default function TalWrapper() {
       <Card>
         <CardHeader>
           <CardTitle className="text-blue-600">Best Practices</CardTitle>
-          <CardDescription>
-            Collection of best practices followed at TAL
-          </CardDescription>
+          <CardDescription>Collection of best practices followed at TAL</CardDescription>
         </CardHeader>
         <CardContent>
           <ul className="list-disc pl-6 space-y-2">
