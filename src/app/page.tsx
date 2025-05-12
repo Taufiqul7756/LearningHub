@@ -19,7 +19,7 @@ interface CardType {
 const cards: CardType[] = [
   {
     title: 'TAL',
-    description: 'Tech Analyica Ltd resources and best practices',
+    description: 'Tech Analytica Ltd resources and best practices',
     href: '/tal',
     requiresAuth: true,
     logo: '/images/tal_logo.jpg',
